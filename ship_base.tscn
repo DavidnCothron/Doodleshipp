@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cmhvslbni3d5b"]
+
+[ext_resource type="Script" uid="uid://b7lqwy1vdfsye" path="res://ShipBase.cs" id="1_0kwod"]
+[ext_resource type="Texture2D" uid="uid://gibos3hreaky" path="res://Star_Destroyer.png" id="2_0ry0t"]
+[ext_resource type="Script" uid="uid://dmr00ydkix6m" path="res://ShipCharacterBody2D.cs" id="2_r2ni2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jvo6v"]
+radius = 83.0
+height = 226.0
+
+[node name="ShipBase" type="Node2D" unique_id=1675850289]
+script = ExtResource("1_0kwod")
+
+[node name="ShipCharacterBody2D" type="CharacterBody2D" parent="." unique_id=628087441]
+script = ExtResource("2_r2ni2")
+
+[node name="ShipSprite" type="Sprite2D" parent="ShipCharacterBody2D" unique_id=214673257]
+texture = ExtResource("2_0ry0t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipCharacterBody2D" unique_id=1383662105]
+shape = SubResource("CapsuleShape2D_jvo6v")
