@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 public partial class ShipCharacterBody2D : CharacterBody2D
@@ -7,6 +8,7 @@ public partial class ShipCharacterBody2D : CharacterBody2D
 	public const float Speed = 300.0f;
 	public float targetPositonDeadzone = 5.0f;
 	private Vector2 targetPosition;
+	private Queue<Vector2> movementWaypoints = [];
 
 
 	public override void _Ready()
@@ -18,15 +20,14 @@ public partial class ShipCharacterBody2D : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		var targetWithinDistance = Position.DistanceTo(targetPosition) >= targetPositonDeadzone;
-		Debug.WriteLineIf(targetWithinDistance, "Target position is: " + targetPosition);
-
-		if(Input.IsActionPressed("Click")) {
-			targetPosition = GetMovePoint();
-		}
 
 		if(targetWithinDistance) {
 			MoveShip(Position.DirectionTo(targetPosition));
 		}
+	}
+
+	public void SetTargetPosition() {
+		targetPosition = GetMovePoint();
 	}
 
 	private Vector2 GetMovePoint() {

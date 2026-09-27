@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://0hae20ncpjmc"]
 
 [ext_resource type="PackedScene" uid="uid://cmhvslbni3d5b" path="res://ship_base.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://b8n0h7ve2rru" path="res://MainController.cs" id="2_2c62f"]
 
 [node name="MainScene" type="Node2D" unique_id=824947130]
 
 [node name="ShipBase" parent="." unique_id=1675850289 instance=ExtResource("1_0f027")]
 position = Vector2(-3, 28)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2087846540]
+[node name="MainCamera" type="Camera2D" parent="." unique_id=2087846540]
 position = Vector2(0, 10)
+script = ExtResource("2_2c62f")
