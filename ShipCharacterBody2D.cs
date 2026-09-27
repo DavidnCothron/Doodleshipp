@@ -5,19 +5,37 @@ using System.Diagnostics;
 public partial class ShipCharacterBody2D : CharacterBody2D
 {
 	public const float Speed = 300.0f;
+	public float targetPositonDeadzone = 5.0f;
+	private Vector2 targetPosition;
+
 
 	public override void _Ready()
 	{
+		targetPosition = Position;
 		MotionMode = MotionModeEnum.Floating;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		MoveShip(Input.GetVector("Left", "Right", "Up", "Down"));
+		var targetWithinDistance = Position.DistanceTo(targetPosition) >= targetPositonDeadzone;
+		Debug.WriteLineIf(targetWithinDistance, "Target position is: " + targetPosition);
+
+		if(Input.IsActionPressed("Click")) {
+			targetPosition = GetMovePoint();
+		}
+
+		if(targetWithinDistance) {
+			MoveShip(Position.DirectionTo(targetPosition));
+		}
+	}
+
+	private Vector2 GetMovePoint() {
+		return GetGlobalMousePosition();
 	}
 
 	private void MoveShip(Vector2 direction)
 	{
+		Debug.WriteLine("Ship position is: " + Position);
 		Vector2 velocity = Velocity;
 
 		if (direction != Vector2.Zero)
