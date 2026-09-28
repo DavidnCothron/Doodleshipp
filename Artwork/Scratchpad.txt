@@ -1,0 +1,36 @@
+
+object ship {
+
+	// position and physics variables
+	Vector2 pos = {0, 0, 0} // right, up, rotation
+	float speed = 0
+	
+
+}
+
+
+
+float missileGuidancePN(missileObj, tgtObj) {
+
+	float dir_desired = 0;
+
+	Vector2 relPos = tgtObj.pos - missileObj.pos;
+	float los = atan2(relPos.Y, relPos.X);
+	float dist = 1 / (0.01 + relPos.dist());
+	
+	float offset = dist * (sin(los) * relPos.Y) - (cos(los) * relPos.X);
+
+	offset = offset + los;
+	
+	return offset ;
+}
+
+
+
+function onmousedown(mousepos)
+
+end
+
+
+
+
