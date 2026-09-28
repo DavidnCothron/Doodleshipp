@@ -34,20 +34,15 @@ public partial class ShipCharacterBody2D : CharacterBody2D
 		return GetGlobalMousePosition();
 	}
 
-	private void MoveShip(Vector2 direction)
-	{
+	private void MoveShip(Vector2 direction) {
 		Debug.WriteLine("Ship position is: " + Position);
 		Vector2 velocity = Velocity;
 
-		if (direction != Vector2.Zero)
-
-		{
+		if (direction != Vector2.Zero) {
 			velocity.X = direction.X * Speed;
 			velocity.Y = direction.Y * Speed;
 			Rotation = velocity.Angle() + (float)(Math.PI / 2);
-		}
-		else
-		{
+		} else {
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
 		}
