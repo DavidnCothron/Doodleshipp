@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7lqwy1vdfsye" path="res://ShipBase.cs" id="1_0kwod"]
 [ext_resource type="Texture2D" uid="uid://gibos3hreaky" path="res://Star_Destroyer.png" id="2_0ry0t"]
 [ext_resource type="Script" uid="uid://dmr00ydkix6m" path="res://ShipCharacterBody2D.cs" id="2_r2ni2"]
+[ext_resource type="Texture2D" uid="uid://moes8l7ixplp" path="res://SelectedCircle.png" id="4_r0kmo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jvo6v"]
 radius = 83.0
@@ -13,6 +14,10 @@ script = ExtResource("1_0kwod")
 
 [node name="ShipCharacterBody2D" type="CharacterBody2D" parent="." unique_id=628087441]
 script = ExtResource("2_r2ni2")
+
+[node name="ActiveSprite" type="Sprite2D" parent="ShipCharacterBody2D" unique_id=973446273]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_r0kmo")
 
 [node name="ShipSprite" type="Sprite2D" parent="ShipCharacterBody2D" unique_id=214673257]
 texture = ExtResource("2_0ry0t")
